@@ -62,13 +62,10 @@ const cardAppender = (selector) => {
   .then((res) => {
     const article = res.data.articles;
     const {javascript, bootstrap, technology, jquery, node} = article
-    //console.log('title');
-    console.log('res', res);
+    //console.log('res', res);
     
     function makeArticle(name){
       name.forEach(topic => {
-        //console.log('topic', topic);
-        //console.log(topic.headline);
         const newCard = Card(topic);
         const element = document.querySelector(selector);
         element.appendChild(newCard);
