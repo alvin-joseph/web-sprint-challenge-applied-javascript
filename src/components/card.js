@@ -60,16 +60,26 @@ const cardAppender = (selector) => {
   axios
   .get(`https://lambda-times-api.herokuapp.com/articles`)
   .then((res) => {
-    const articleTitle = res.data.articles.bootstrap;
-    console.log(articleTitle);
-    articleTitle.forEach(topic => {
-      console.log(topic);
-      console.log(topic.headline);
-      const newCard = Card(topic);
-      console.log('new', newCard);
-      const element = document.querySelector(selector);
-      element.appendChild(newCard);
-    })
+    const article = res.data.articles;
+    const {javascript, bootstrap, technology, jquery, node} = article
+    //console.log('title');
+    console.log('res', res);
+    
+    function makeArticle(name){
+      name.forEach(topic => {
+        //console.log('topic', topic);
+        //console.log(topic.headline);
+        const newCard = Card(topic);
+        const element = document.querySelector(selector);
+        element.appendChild(newCard);
+      })
+    }
+    makeArticle(javascript);
+    makeArticle(bootstrap);
+    makeArticle(technology);
+    makeArticle(jquery);
+    makeArticle(node);
+
   })
   .catch((err) => {
     console.log(err);
